@@ -5,3 +5,28 @@ let company = {
         internals: [{ name: 'Jack', salary: 1300 }]
     }
 };
+
+function sumSalaries(department) {
+
+    if (Array.isArray(department)) {
+        let sum = 0;
+
+        for (let employee of department) {
+            sum += employee.salary;
+        }
+
+        return sum;
+    } 
+    
+    else {
+        let sum = 0;
+
+        for (let subdep of Object.values(department)) {
+            sum += sumSalaries(subdep);
+        }
+
+        return sum;
+    }
+}
+
+console.log(sumSalaries(company));
